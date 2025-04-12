@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Un Clic - Appuie. Ils arrivent.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;600;700&display=swap');
+        
+        :root {
+            --neon-green: #00ff9d;
+            --neon-pink: #ff00aa;
+            --dark-bg: #0a0a0a;
+            --off-white: #f5f5f5;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--off-white);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, .font-title {
+            font-family: 'Archivo Black', sans-serif;
+        }
+        
+        .glitch-effect {
+            position: relative;
+        }
+        
+        .glitch-effect:hover::before {
+            content: attr(data-text);
+            position: absolute;
+            left: -2px;
+            text-shadow: 2px 0 var(--neon-pink);
+            clip: rect(0, 900px, 0, 0);
+            animation: glitch-anim 2s infinite linear alternate-reverse;
+        }
+        
+        .glitch-effect:hover::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 2px;
+            text-shadow: -2px 0 var(--neon-green);
+            clip: rect(0, 900px, 0, 0);
+            animation: glitch-anim 2s infinite linear alternate-reverse;
+        }
+        
+        @keyframes glitch-anim {
+            0% { clip: rect(31px, 9999px, 94px, 0) }
+            10% { clip: rect(112px, 9999px, 76px, 0) }
+            20% { clip: rect(85px, 9999px, 77px, 0) }
+            30% { clip: rect(27px, 9999px, 97px, 0) }
+            40% { clip: rect(64px, 9999px, 98px, 0) }
+            50% { clip: rect(61px, 9999px, 85px, 0) }
+            60% { clip: rect(99px, 9999px, 114px, 0) }
+            70% { clip: rect(34px, 9999px, 115px, 0) }
+            80% { clip: rect(98px, 9999px, 129px, 0) }
+            90% { clip: rect(43px, 9999px, 96px, 0) }
+            100% { clip: rect(82px, 9999px, 64px, 0) }
+        }
+        
+        .vibrate {
+            animation: vibrate 0.3s linear infinite;
+        }
+        
+        @keyframes vibrate {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .floating-delay-1 {
+            animation-delay: 1s;
+        }
+        
+        .floating-delay-2 {
+            animation-delay: 2s;
+        }
+        
+        .floating-delay-3 {
+            animation-delay: 3s;
+        }
+        
+        .noise-bg {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E");
+        }
+        
+        .sticker {
+            background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            backdrop-filter: blur(5px);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .sticker:hover {
+            transform: rotate(15deg) scale(1.2);
+        }
+        
+        .feature-sticker {
+            background: rgba(255,255,255,0.05);
+            border: 1px dashed rgba(255,255,255,0.2);
+            transform: rotate(-5deg);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-sticker:hover {
+            transform: rotate(0deg) scale(1.05);
+            background: rgba(255,255,255,0.1);
+        }
+        
+        .coming-soon {
+            position: relative;
+        }
+        
+        .coming-soon::after {
+            content: "bientôt";
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: var(--neon-pink);
+            color: black;
+            font-size: 0.6rem;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 10px;
+            transform: rotate(15deg);
+        }
+        
+        .message-bubble {
+            position: relative;
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 15px;
+            max-width: 80%;
+            margin-bottom: 20px;
+        }
+        
+        .message-bubble::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 20px;
+            border-width: 10px 10px 0;
+            border-style: solid;
+            border-color: rgba(255,255,255,0.1) transparent;
+        }
+        
+        .phone-mockup {
+            position: relative;
+            background: #111;
+            border-radius: 40px;
+            padding: 10px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            transform: perspective(1000px) rotateY(-10deg);
+        }
+        
+        .phone-screen {
+            background: #222;
+            border-radius: 30px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .notification {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--neon-green);
+            color: black;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            animation: notification-pulse 2s infinite;
+        }
+        
+        @keyframes notification-pulse {
+            0% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.05); }
+            100% { transform: translateX(-50%) scale(1); }
+        }
+        
+        .step-card {
+            transition: all 0.5s ease;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+        
+        .step-card.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .faq-answer {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- 🌀 HERO SECTION -->
+    <section class="min-h-screen flex items-center justify-center relative overflow-hidden noise-bg">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-30 z-0"></div>
+        
+        <!-- Floating emojis -->
+        <div class="sticker w-16 h-16 text-2xl absolute top-1/4 left-1/6 floating">
+            🚀
+        </div>
+        <div class="sticker w-20 h-20 text-3xl absolute top-1/3 right-1/5 floating floating-delay-1">
+            🎉
+        </div>
+        <div class="sticker w-14 h-14 text-xl absolute bottom-1/4 left-1/4 floating floating-delay-2">
+            ⏱️
+        </div>
+        <div class="sticker w-18 h-18 text-2xl absolute bottom-1/3 right-1/6 floating floating-delay-3">
+            🔥
+        </div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center justify-between">
+                <div class="lg:w-1/2 mb-12 lg:mb-0 text-center lg:text-left">
+                    <h1 class="text-5xl md:text-7xl font-title mb-6 glitch-effect" data-text="Un clic, ils sont tous prêts.">
+                        Un clic, ils sont tous prêts.
+                    </h1>
+                    <p class="text-xl md:text-2xl mb-8">
+                        Simple, sec, synchronisé.
+                    </p>
+                    <p class="text-lg opacity-80 mb-12 max-w-lg mx-auto lg:mx-0">
+                        Pas de chat. Pas de feed. Juste un bouton. Et ça suffit.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <button class="bg-white text-black px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-200 transition-all duration-300 vibrate-on-hover relative overflow-hidden group">
+                            <span class="relative z-10">Télécharger l'app</span>
+                            <span class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-30 group-hover:animate-shine"></span>
+                        </button>
+                        <a href="#how-it-works" class="border-2 border-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-black transition-all duration-300">
+                            Voir comment ça marche
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2 flex justify-center relative">
+                    <div class="phone-mockup w-64 md:w-80 pulse">
+                        <div class="phone-screen aspect-[9/19.5] relative">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="w-24 h-24 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white text-4xl cursor-pointer hover:scale-110 transition-transform duration-300" id="main-button">
+                                    <i class="fas fa-bolt"></i>
+                                </div>
+                            </div>
+                            <div class="notification hidden" id="notification">
+                                Tout le monde est prêt !
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 🔁 HOW IT WORKS SECTION -->
+    <section id="how-it-works" class="py-20 bg-gradient-to-b from-black to-gray-900 relative overflow-hidden">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-title mb-20 text-center glitch-effect" data-text="Comment ça marche">
+                Comment ça marche
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- Step 1 -->
+                <div class="step-card bg-gray-900 rounded-3xl p-8 relative overflow-hidden group">
+                    <div class="absolute -top-10 -right-10 text-6xl opacity-20 group-hover:opacity-40 transition-all duration-500">
+                        👥
+                    </div>
+                    <div class="w-20 h-20 rounded-full bg-gradient-to-br from-blue-500 to-green-500 flex items-center justify-center text-white text-3xl mb-6 mx-auto">
+                        1
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-center">Crée ton groupe</h3>
+                    <p class="text-gray-400 text-center">
+                        En 10 secondes, même avec un demi-signal. Ajoute tes potes et c'est plié.
+                    </p>
+                    <div class="absolute -bottom-5 -left-5 text-4xl opacity-20 group-hover:opacity-40 transition-all duration-500">
+                        🛴
+                    </div>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="step-card bg-gray-900 rounded-3xl p-8 relative overflow-hidden group">
+                    <div class="absolute -top-10 -left-10 text-6xl opacity-20 group-hover:opacity-40 transition-all duration-500">
+                        ⚡
+                    </div>
+                    <div class="w-20 h-20 rounded-full bg-gradient-to-br from-yellow-500 to-orange-500 flex items-center justify-center text-white text-3xl mb-6 mx-auto">
+                        2
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-center">Appuie quand t'es chaud</h3>
+                    <p class="text-gray-400 text-center">
+                        Un simple clic et tout le monde est notifié instantanément. Pas besoin de spam.
+                    </p>
+                    <div class="absolute -bottom-5 -right-5 text-4xl opacity-20 group-hover:opacity-40 transition-all duration-500">
+                        ⏱️
+                    </div>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="step-card bg-gray-900 rounded-3xl p-8 relative overflow-hidden group">
+                    <div class="absolute -top-10 -right-10 text-6xl opacity-20 group-hover:opacity-40 transition-all duration-500">
+                        🎯
+                    </div>
+                    <div class="w-20 h-20 rounded-full bg-gradient-to-br from-pink-500 to-purple-500 flex items-center justify-center text-white text-3xl mb-6 mx-auto">
+                        3
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-center">Tout le monde part synchro</h3>
+                    <p class="text-gray-400 text-center">
+                        Zéro blabla, zéro latence. Tout le monde est prêt en même temps.
+                    </p>
+                    <div class="absolute -bottom-5 -left-5 text-4xl opacity-20 group-hover:opacity-40 transition-all duration-500">
+                        🔥
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 📲 FEATURES SECTION -->
+    <section class="py-20 bg-black relative overflow-hidden">
+        <div class="noise-bg absolute inset-0 opacity-10"></div>
+        <div class="container mx-auto px-6 relative">
+            <h2 class="text-4xl md:text-5xl font-title mb-20 text-center glitch-effect" data-text="Juste l'essentiel">
+                Juste l'essentiel
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Feature 1 -->
+                <div class="feature-sticker p-6 rounded-2xl hover:rotate-0">
+                    <div class="flex items-start">
+                        <div class="w-12 h-12 rounded-full bg-green-900 flex items-center justify-center text-green-400 mr-4">
+                            <i class="fas fa-bell text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Notification instantanée</h3>
+                            <p class="text-gray-400">Dès qu'un pote appuie, tout le monde est alerté en temps réel.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="feature-sticker p-6 rounded-2xl hover:rotate-0">
+                    <div class="flex items-start">
+                        <div class="w-12 h-12 rounded-full bg-blue-900 flex items-center justify-center text-blue-400 mr-4">
+                            <i class="fas fa-eye text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Statut de préparation</h3>
+                            <p class="text-gray-400">Vois en un clin d'œil qui est prêt et qui traîne encore.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="feature-sticker p-6 rounded-2xl hover:rotate-0 coming-soon">
+                    <div class="flex items-start">
+                        <div class="w-12 h-12 rounded-full bg-purple-900 flex items-center justify-center text-purple-400 mr-4">
+                            <i class="fas fa-map-marker-alt text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Point de rendez-vous</h3>
+                            <p class="text-gray-400">Définis un lieu de rencontre visible par tout le groupe.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="feature-sticker p-6 rounded-2xl hover:rotate-0 coming-soon">
+                    <div class="flex items-start">
+                        <div class="w-12 h-12 rounded-full bg-yellow-900 flex items-center justify-center text-yellow-400 mr-4">
+                            <i class="fas fa-clock text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Heure idéale</h3>
+                            <p class="text-gray-400">On calcule pour que tout le monde arrive en même temps.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Feature 5 -->
+                <div class="feature-sticker p-6 rounded-2xl hover:rotate-0">
+                    <div class="flex items-start">
+                        <div class="w-12 h-12 rounded-full bg-red-900 flex items-center justify-center text-red-400 mr-4">
+                            <i class="fas fa-ban text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Pas de bullshit</h3>
+                            <p class="text-gray-400">Pas de chat. Pas de pub. Juste ce dont tu as besoin.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 💬 TESTIMONIALS SECTION -->
+    <section class="py-20 bg-gradient-to-b from-gray-900 to-black relative overflow-hidden">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-title mb-20 text-center glitch-effect" data-text="Ce qu'ils disent">
+                Ce qu'ils disent
+            </h2>
+            
+            <div class="flex flex-col lg:flex-row items-center justify-center gap-12">
+                <!-- Phone Mockup -->
+                <div class="phone-mockup w-64 md:w-80">
+                    <div class="phone-screen aspect-[9/19.5] p-4">
+                        <div class="h-full overflow-y-auto">
+                            <!-- Message 1 -->
+                            <div class="message-bubble">
+                                <p>"On appuie, on sort. C'est tout. Génial."</p>
+                                <div class="flex justify-between items-center mt-2 text-xs opacity-70">
+                                    <span>Maxime</span>
+                                    <span>15:24</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Message 2 -->
+                            <div class="message-bubble ml-auto bg-gradient-to-r from-purple-500 to-pink-500 text-white">
+                                <p>"Plus besoin de spammer le groupe. Un bouton, et boum."</p>
+                                <div class="flex justify-between items-center mt-2 text-xs opacity-70">
+                                    <span>Sarah</span>
+                                    <span>15:25</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Message 3 -->
+                            <div class="message-bubble">
+                                <p>"On est tous arrivés en même temps. Incroyable."</p>
+                                <div class="flex justify-between items-center mt-2 text-xs opacity-70">
+                                    <span>Thomas</span>
+                                    <span>15:26</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Floating emojis -->
+                <div class="hidden lg:flex flex-col gap-8">
+                    <div class="sticker w-20 h-20 text-3xl floating">
+                        🎉
+                    </div>
+                    <div class="sticker w-16 h-16 text-2xl floating floating-delay-1">
+                        📡
+                    </div>
+                    <div class="sticker w-24 h-24 text-4xl floating floating-delay-2">
+                        🤯
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- ❓ FAQ SECTION -->
+    <section class="py-20 bg-black relative overflow-hidden">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-title mb-20 text-center glitch-effect" data-text="Le coin des sceptiques">
+                Le coin des sceptiques
+            </h2>
+            
+            <div class="max-w-3xl mx-auto">
+                <!-- FAQ Item 1 -->
+                <div class="mb-8 border-b border-gray-800 pb-6">
+                    <div class="flex justify-between items-start cursor-pointer group" onclick="toggleAnswer(this)">
+                        <h3 class="text-xl md:text-2xl font-bold group-hover:text-green-400 transition-colors duration-300">C'est une app de chat ?</h3>
+                        <span class="text-xl ml-4 group-hover:text-pink-400 transition-colors duration-300">+</span>
+                    </div>
+                    <div class="faq-answer mt-4 text-gray-400 overflow-hidden max-h-0">
+                        <p>Non. Juste un bouton. On a dit qu'on faisait pas dans le compliqué.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 2 -->
+                <div class="mb-8 border-b border-gray-800 pb-6">
+                    <div class="flex justify-between items-start cursor-pointer group" onclick="toggleAnswer(this)">
+                        <h3 class="text-xl md:text-2xl font-bold group-hover:text-green-400 transition-colors duration-300">Ça sert à quoi ?</h3>
+                        <span class="text-xl ml-4 group-hover:text-pink-400 transition-colors duration-300">+</span>
+                    </div>
+                    <div class="faq-answer mt-4 text-gray-400 overflow-hidden max-h-0">
+                        <p>À sortir plus vite. Ensemble. Sans se prendre la tête.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 3 -->
+                <div class="mb-8 border-b border-gray-800 pb-6">
+                    <div class="flex justify-between items-start cursor-pointer group" onclick="toggleAnswer(this)">
+                        <h3 class="text-xl md:text-2xl font-bold group-hover:text-green-400 transition-colors duration-300">C'est gratuit ?</h3>
+                        <span class="text-xl ml-4 group-hover:text-pink-400 transition-colors duration-300">+</span>
+                    </div>
+                    <div class="faq-answer mt-4 text-gray-400 overflow-hidden max-h-0">
+                        <p>Évidemment. On est pas des sauvages.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 4 -->
+                <div class="mb-8 border-b border-gray-800 pb-6">
+                    <div class="flex justify-between items-start cursor-pointer group" onclick="toggleAnswer(this)">
+                        <h3 class="text-xl md:text-2xl font-bold group-hover:text-green-400 transition-colors duration-300">C'est pour qui ?</h3>
+                        <span class="text-xl ml-4 group-hover:text-pink-400 transition-colors duration-300">+</span>
+                    </div>
+                    <div class="faq-answer mt-4 text-gray-400 overflow-hidden max-h-0">
+                        <p>Ceux qui veulent bouger sans se prendre la tête. Les autres peuvent rester chez eux.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 5 -->
+                <div class="mb-8">
+                    <div class="flex justify-between items-start cursor-pointer group" onclick="toggleAnswer(this)">
+                        <h3 class="text-xl md:text-2xl font-bold group-hover:text-green-400 transition-colors duration-300">Et si j'aime pas ?</h3>
+                        <span class="text-xl ml-4 group-hover:text-pink-400 transition-colors duration-300">+</span>
+                    </div>
+                    <div class="faq-answer mt-4 text-gray-400 overflow-hidden max-h-0">
+                        <p>Alors reste chez toi 🤷</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 🚀 FOOTER -->
+    <footer class="py-16 bg-gradient-to-b from-black to-gray-900 relative overflow-hidden noise-bg">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-title mb-8 glitch-effect" data-text="Appuie. Ils arrivent.">
+                Appuie. Ils arrivent.
+            </h2>
+            
+            <p class="text-xl mb-12 max-w-2xl mx-auto">
+                C'est pas une appli. C'est un starter.
+            </p>
+            
+            <div class="flex justify-center gap-6 mb-12">
+                <button class="bg-white text-black px-6 py-3 rounded-full font-bold hover:bg-gray-200 transition-all duration-300 flex items-center">
+                    <i class="fab fa-apple mr-2 text-xl"></i>
+                    App Store
+                </button>
+                <button class="bg-white text-black px-6 py-3 rounded-full font-bold hover:bg-gray-200 transition-all duration-300 flex items-center">
+                    <i class="fab fa-google-play mr-2 text-xl"></i>
+                    Play Store
+                </button>
+            </div>
+            
+            <div class="text-gray-500 text-sm">
+                <a href="#" class="hover:text-white transition-colors duration-300">Tu veux lire nos CGU ? OK boomer.</a>
+            </div>
+            
+            <!-- Floating sticker -->
+            <div class="sticker w-16 h-16 text-2xl absolute bottom-10 right-10 cursor-pointer hover:rotate-45" id="random-sticker">
+                🚀
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Hero section button animation
+        document.querySelector('.vibrate-on-hover').addEventListener('mouseenter', function() {
+            this.classList.add('vibrate');
+            // Play sound effect
+            const audio = new Audio('data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YU...');
+            audio.volume = 0.2;
+            audio.play().catch(e => console.log(e));
+        });
+        
+        document.querySelector('.vibrate-on-hover').addEventListener('mouseleave', function() {
+            this.classList.remove('vibrate');
+        });
+        
+        // Main button interaction
+        const mainButton = document.getElementById('main-button');
+        const notification = document.getElementById('notification');
+        
+        mainButton.addEventListener('click', function() {
+            this.classList.add('animate-ping');
+            setTimeout(() => {
+                this.classList.remove('animate-ping');
+                notification.classList.remove('hidden');
+                
+                // Simulate notification spreading
+                setTimeout(() => {
+                    notification.classList.add('opacity-0', 'scale-150');
+                    setTimeout(() => {
+                        notification.classList.add('hidden');
+                        notification.classList.remove('opacity-0', 'scale-150');
+                    }, 500);
+                }, 2000);
+            }, 500);
+        });
+        
+        // Random sticker in footer
+        const stickers = ['🚀', '🎯', '🔥', '⚡', '🎉', '🤯', '👽', '🛸'];
+        const randomSticker = document.getElementById('random-sticker');
+        
+        randomSticker.addEventListener('mouseenter', function() {
+            const randomIndex = Math.floor(Math.random() * stickers.length);
+            this.textContent = stickers[randomIndex];
+        });
+        
+        // Scroll animation for steps
+        const stepCards = document.querySelectorAll('.step-card');
+        
+        function checkVisibility() {
+            stepCards.forEach((card, index) => {
+                const rect = card.getBoundingClientRect();
+                const isVisible = (rect.top <= window.innerHeight * 0.8);
+                
+                if (isVisible) {
+                    setTimeout(() => {
+                        card.classList.add('visible');
+                    }, index * 200);
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', checkVisibility);
+        window.addEventListener('load', checkVisibility);
+        
+        // FAQ toggle
+        function toggleAnswer(question) {
+            const answer = question.nextElementSibling;
+            const plusSign = question.querySelector('span');
+            
+            if (answer.style.maxHeight) {
+                answer.style.maxHeight = null;
+                plusSign.textContent = '+';
+            } else {
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+                plusSign.textContent = '-';
+                
+                // Random answer variations for fun
+                const answers = answer.querySelectorAll('p');
+                answers.forEach(p => {
+                    const variations = [
+                        p.textContent,
+                        p.textContent + " (mais vraiment)",
+                        p.textContent.toLowerCase(),
+                        p.textContent.toUpperCase(),
+                        p.textContent.split('').reverse().join('')
+                    ];
+                    
+                    p.addEventListener('click', function() {
+                        const randomIndex = Math.floor(Math.random() * variations.length);
+                        this.textContent = variations[randomIndex];
+                    });
+                });
+            }
+        }
+    </script>
+</body>
+</html>
