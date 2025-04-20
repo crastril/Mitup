@@ -1,677 +1,462 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Un Clic - Appuie. Ils arrivent.</title>
+    <title>MITUP | One tap. They're all ready.</title>
+    <meta name="description" content="No spam. No chat. Just a button to coordinate going out with friends.">
+    <meta property="og:title" content="MITUP | One tap. They're all ready.">
+    <meta property="og:description" content="No spam. No chat. Just a button to coordinate going out with friends.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mitup.app">
+    <meta property="og:image" content="https://mitup.app/images/og-image.png">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;600;700&display=swap');
-        
-        :root {
-            --neon-green: #00ff9d;
-            --neon-pink: #ff00aa;
-            --dark-bg: #0a0a0a;
-            --off-white: #f5f5f5;
-        }
-        
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--dark-bg);
-            color: var(--off-white);
-            overflow-x: hidden;
+            background-color: #0a0a0a;
+            color: #f5f5f5;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23171717' fill-opacity='0.2' fill-rule='evenodd'/%3E%3C/svg%3E");
         }
-        
-        h1, h2, h3, .font-title {
+        h1, h2, h3, h4 {
             font-family: 'Archivo Black', sans-serif;
         }
-        
-        .glitch-effect {
-            position: relative;
+        .emoji-float {
+            animation: float 6s ease-in-out infinite;
         }
-        
-        .glitch-effect:hover::before {
-            content: attr(data-text);
-            position: absolute;
-            left: -2px;
-            text-shadow: 2px 0 var(--neon-pink);
-            clip: rect(0, 900px, 0, 0);
-            animation: glitch-anim 2s infinite linear alternate-reverse;
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
         }
-        
-        .glitch-effect:hover::after {
-            content: attr(data-text);
-            position: absolute;
-            left: 2px;
-            text-shadow: -2px 0 var(--neon-green);
-            clip: rect(0, 900px, 0, 0);
-            animation: glitch-anim 2s infinite linear alternate-reverse;
-        }
-        
-        @keyframes glitch-anim {
-            0% { clip: rect(31px, 9999px, 94px, 0) }
-            10% { clip: rect(112px, 9999px, 76px, 0) }
-            20% { clip: rect(85px, 9999px, 77px, 0) }
-            30% { clip: rect(27px, 9999px, 97px, 0) }
-            40% { clip: rect(64px, 9999px, 98px, 0) }
-            50% { clip: rect(61px, 9999px, 85px, 0) }
-            60% { clip: rect(99px, 9999px, 114px, 0) }
-            70% { clip: rect(34px, 9999px, 115px, 0) }
-            80% { clip: rect(98px, 9999px, 129px, 0) }
-            90% { clip: rect(43px, 9999px, 96px, 0) }
-            100% { clip: rect(82px, 9999px, 64px, 0) }
-        }
-        
-        .vibrate {
-            animation: vibrate 0.3s linear infinite;
-        }
-        
-        @keyframes vibrate {
-            0% { transform: translate(0); }
-            20% { transform: translate(-2px, 2px); }
-            40% { transform: translate(-2px, -2px); }
-            60% { transform: translate(2px, 2px); }
-            80% { transform: translate(2px, -2px); }
-            100% { transform: translate(0); }
-        }
-        
         .pulse {
             animation: pulse 2s infinite;
         }
-        
         @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 157, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(0, 255, 157, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 157, 0); }
         }
-        
-        .floating {
-            animation: floating 6s ease-in-out infinite;
-        }
-        
-        @keyframes floating {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
-        }
-        
-        .floating-delay-1 {
-            animation-delay: 1s;
-        }
-        
-        .floating-delay-2 {
-            animation-delay: 2s;
-        }
-        
-        .floating-delay-3 {
-            animation-delay: 3s;
-        }
-        
-        .noise-bg {
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E");
-        }
-        
-        .sticker {
-            background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
-            backdrop-filter: blur(5px);
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-        }
-        
-        .sticker:hover {
-            transform: rotate(15deg) scale(1.2);
-        }
-        
-        .feature-sticker {
-            background: rgba(255,255,255,0.05);
-            border: 1px dashed rgba(255,255,255,0.2);
-            transform: rotate(-5deg);
-            transition: all 0.3s ease;
-        }
-        
-        .feature-sticker:hover {
-            transform: rotate(0deg) scale(1.05);
-            background: rgba(255,255,255,0.1);
-        }
-        
-        .coming-soon {
+        .glitch {
             position: relative;
         }
-        
-        .coming-soon::after {
-            content: "bientôt";
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
             position: absolute;
-            top: -10px;
-            right: -10px;
-            background: var(--neon-pink);
-            color: black;
-            font-size: 0.6rem;
-            font-weight: bold;
-            padding: 2px 6px;
-            border-radius: 10px;
-            transform: rotate(15deg);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
-        
-        .message-bubble {
-            position: relative;
-            background: rgba(255,255,255,0.1);
-            border-radius: 20px;
-            padding: 15px;
-            max-width: 80%;
-            margin-bottom: 20px;
+        .glitch::before {
+            color: #ff00aa;
+            animation: glitch-effect 3s infinite;
         }
-        
-        .message-bubble::after {
-            content: "";
-            position: absolute;
-            bottom: -10px;
-            left: 20px;
-            border-width: 10px 10px 0;
-            border-style: solid;
-            border-color: rgba(255,255,255,0.1) transparent;
+        .glitch::after {
+            color: #00ff9d;
+            animation: glitch-effect 2s infinite reverse;
         }
-        
+        @keyframes glitch-effect {
+            0% { transform: translate(0); }
+            20% { transform: translate(-3px, 3px); }
+            40% { transform: translate(-3px, -3px); }
+            60% { transform: translate(3px, 3px); }
+            80% { transform: translate(3px, -3px); }
+            100% { transform: translate(0); }
+        }
         .phone-mockup {
             position: relative;
+            width: 300px;
+            height: 600px;
             background: #111;
             border-radius: 40px;
-            padding: 10px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            transform: perspective(1000px) rotateY(-10deg);
+            border: 10px solid #222;
+            box-shadow: 0 0 0 2px #333;
         }
-        
         .phone-screen {
-            background: #222;
-            border-radius: 30px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .notification {
             position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
             bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--neon-green);
-            color: black;
-            padding: 10px 20px;
+            background: #0a0a0a;
             border-radius: 20px;
-            font-weight: bold;
-            animation: notification-pulse 2s infinite;
+            overflow: hidden;
         }
-        
-        @keyframes notification-pulse {
-            0% { transform: translateX(-50%) scale(1); }
-            50% { transform: translateX(-50%) scale(1.05); }
-            100% { transform: translateX(-50%) scale(1); }
+        .chat-bubble {
+            position: relative;
+            max-width: 80%;
+            padding: 12px 16px;
+            margin: 8px 0;
+            border-radius: 18px;
         }
-        
-        .step-card {
-            transition: all 0.5s ease;
-            transform: translateY(20px);
-            opacity: 0;
+        .chat-bubble.left {
+            background: #222;
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
         }
-        
-        .step-card.visible {
-            transform: translateY(0);
-            opacity: 1;
+        .chat-bubble.right {
+            background: #00ff9d;
+            color: #111;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
         }
-        
-        .faq-answer {
+        .faq-item {
             transition: all 0.3s ease;
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 255, 157, 0.1);
         }
     </style>
 </head>
-<body class="antialiased">
-   <!-- 🌀 HERO SECTION -->
-<section class="min-h-screen flex items-center justify-center relative overflow-hidden noise-bg">
-  <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-30 z-0"></div>
-
-  <div class="container mx-auto px-6 relative z-10">
-    <div class="flex flex-col lg:flex-row items-center justify-between">
-      <div class="lg:w-1/2 mb-12 lg:mb-0 text-center lg:text-left">
-        <h1 class="text-5xl md:text-7xl font-title mb-6 glitch-effect" data-text="Un clic. Une notif. Une sortie.">
-          Un clic. Une notif. Une sortie.
-        </h1>
-        <p class="text-xl md:text-2xl mb-4">
-          Oublie les messages en boucle : dès que t’es prêt, tout le monde le sait.
-        </p>
-        <p class="text-lg opacity-80 mb-8 max-w-lg mx-auto lg:mx-0">
-          Pas de blabla, pas de pub. Juste un bouton. Et ça suffit.
-        </p>
-
-        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-<a href="#signup-form" class="bg-white text-black px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-200 transition-all duration-300">
-  Rejoins la beta
-</a>
-
-          <a href="#how-it-works" class="border-2 border-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-black transition-all duration-300">
-            Voir comment ça marche
-          </a>
-        </div>
-
-        <!-- Optional Email Signup -->
-<form id="signup-form" class="mt-8 max-w-md mx-auto lg:mx-0">
-          <label for="email" class="block text-sm text-gray-400 mb-2">Sois prévenu dès que c’est live</label>
-          <div class="flex">
-            <input type="email" id="email" name="email" required placeholder="ton@email.com"
-                   class="w-full px-4 py-3 rounded-l-full bg-gray-800 text-white placeholder-gray-500 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-500" />
-            <button type="submit"
-                    class="bg-pink-500 text-black px-6 py-3 rounded-r-full font-bold hover:bg-pink-400 transition-all duration-300">
-              Go
-            </button>
-          </div>
-        </form>
-      </div>
-
-      <div class="lg:w-1/2 flex justify-center relative mt-12 lg:mt-0">
-        <div class="phone-mockup w-64 md:w-80 pulse">
-          <div class="phone-screen aspect-[9/19.5] relative">
-            <div class="absolute inset-0 flex items-center justify-center">
-              <div class="w-24 h-24 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white text-4xl cursor-pointer hover:scale-110 transition-transform duration-300" id="main-button">
-                <i class="fas fa-bolt"></i>
-              </div>
-            </div>
-            <div class="notification hidden" id="notification">
-              Tout le monde est prêt !
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- 🔁 HOW IT WORKS SECTION -->
-    <section id="how-it-works" class="py-20 bg-gradient-to-b from-black to-gray-900 relative overflow-hidden">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl md:text-5xl font-title mb-20 text-center glitch-effect" data-text="Comment ça marche">
-                Comment ça marche
-            </h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <!-- Step 1 -->
-                <div class="step-card bg-gray-900 rounded-3xl p-8 relative overflow-hidden group">
-                    <div class="absolute -top-10 -right-10 text-6xl opacity-20 group-hover:opacity-40 transition-all duration-500">
-                        👥
-                    </div>
-                    <div class="w-20 h-20 rounded-full bg-gradient-to-br from-blue-500 to-green-500 flex items-center justify-center text-white text-3xl mb-6 mx-auto">
-                        1
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4 text-center">Crée ton groupe</h3>
-                    <p class="text-gray-400 text-center">
-                        En 10 secondes, même avec un demi-signal. Ajoute tes potes et c'est plié.
+<body class="min-h-screen">
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden py-20 px-4 sm:px-6 lg:px-8">
+        <div class="absolute top-10 left-10 emoji-float" style="animation-delay: 0s;">🚀</div>
+        <div class="absolute top-1/4 right-20 emoji-float" style="animation-delay: 1s;">🎉</div>
+        <div class="absolute bottom-20 left-1/3 emoji-float" style="animation-delay: 2s;">🔥</div>
+        <div class="absolute bottom-1/3 right-1/4 emoji-float" style="animation-delay: 3s;">👯</div>
+        
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col lg:flex-row items-center justify-between">
+                <div class="lg:w-1/2 mb-12 lg:mb-0">
+                    <h1 class="glitch text-4xl sm:text-5xl md:text-6xl font-bold mb-6" data-text="One tap. They're all ready.">
+                        One tap. They're all ready.
+                    </h1>
+                    <p class="text-xl text-gray-300 mb-8">
+                        No spam. No chat. Just a button.
                     </p>
-                    <div class="absolute -bottom-5 -left-5 text-4xl opacity-20 group-hover:opacity-40 transition-all duration-500">
-                        🛴
+                    <div class="flex flex-col sm:flex-row gap-4 mb-12">
+                        <button onclick="document.getElementById('beta-form').scrollIntoView({ behavior: 'smooth' })" class="px-8 py-4 bg-gradient-to-r from-green-400 to-blue-500 text-black font-bold rounded-full hover:opacity-90 transition">
+                            Join the beta
+                        </button>
+                        <button onclick="document.getElementById('how-it-works').scrollIntoView({ behavior: 'smooth' })" class="px-8 py-4 border-2 border-gray-700 text-white font-bold rounded-full hover:bg-gray-800 transition">
+                            See how it works
+                        </button>
                     </div>
+                    <div class="max-w-md">
+                        <p class="text-gray-400 mb-4">Get notified when we launch</p>
+                        <form class="flex">
+                            <input type="email" placeholder="Your email" class="flex-grow px-4 py-3 bg-gray-800 text-white rounded-l-lg focus:outline-none focus:ring-2 focus:ring-green-400">
+                            <button type="submit" class="px-6 py-3 bg-green-400 text-black font-bold rounded-r-lg hover:bg-green-300 transition">
+                                Notify me
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 flex justify-center">
+                    <div class="phone-mockup">
+                        <div class="phone-screen flex items-center justify-center">
+                            <div class="text-center p-8">
+                                <div class="mx-auto w-32 h-32 rounded-full bg-gray-800 flex items-center justify-center mb-8 pulse">
+                                    <span class="text-4xl">👯</span>
+                                </div>
+                                <h3 class="text-2xl font-bold mb-2">MITUP</h3>
+                                <p class="text-gray-400 mb-6">Who's ready to go out?</p>
+                                <button class="px-8 py-4 bg-gradient-to-r from-pink-500 to-purple-500 text-white font-bold rounded-full hover:opacity-90 transition w-full">
+                                    I'M READY
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it Works -->
+    <section id="how-it-works" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-16">How it works</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Step 1 -->
+                <div class="bg-gray-800 p-8 rounded-xl">
+                    <div class="w-16 h-16 rounded-full bg-green-400 text-black flex items-center justify-center text-2xl font-bold mb-6">1</div>
+                    <h3 class="text-2xl font-bold mb-4">Create your group</h3>
+                    <p class="text-gray-300">Fast and easy, even with bad signal. Just add your crew and you're set.</p>
+                    <div class="mt-6 text-4xl">👥</div>
                 </div>
                 
                 <!-- Step 2 -->
-                <div class="step-card bg-gray-900 rounded-3xl p-8 relative overflow-hidden group">
-                    <div class="absolute -top-10 -left-10 text-6xl opacity-20 group-hover:opacity-40 transition-all duration-500">
-                        ⚡
-                    </div>
-                    <div class="w-20 h-20 rounded-full bg-gradient-to-br from-yellow-500 to-orange-500 flex items-center justify-center text-white text-3xl mb-6 mx-auto">
-                        2
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4 text-center">Appuie quand t'es chaud</h3>
-                    <p class="text-gray-400 text-center">
-                        Un simple clic et tout le monde est notifié instantanément. Pas besoin de spam.
-                    </p>
-                    <div class="absolute -bottom-5 -right-5 text-4xl opacity-20 group-hover:opacity-40 transition-all duration-500">
-                        ⏱️
-                    </div>
+                <div class="bg-gray-800 p-8 rounded-xl">
+                    <div class="w-16 h-16 rounded-full bg-pink-500 text-white flex items-center justify-center text-2xl font-bold mb-6">2</div>
+                    <h3 class="text-2xl font-bold mb-4">Tap when you're ready</h3>
+                    <p class="text-gray-300">Instantly notifies everyone. No typing, no excuses, just action.</p>
+                    <div class="mt-6 text-4xl">👆</div>
                 </div>
                 
                 <!-- Step 3 -->
-                <div class="step-card bg-gray-900 rounded-3xl p-8 relative overflow-hidden group">
-                    <div class="absolute -top-10 -right-10 text-6xl opacity-20 group-hover:opacity-40 transition-all duration-500">
-                        🎯
-                    </div>
-                    <div class="w-20 h-20 rounded-full bg-gradient-to-br from-pink-500 to-purple-500 flex items-center justify-center text-white text-3xl mb-6 mx-auto">
-                        3
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4 text-center">Tout le monde part synchro</h3>
-                    <p class="text-gray-400 text-center">
-                        Zéro blabla, zéro latence. Tout le monde est prêt en même temps.
-                    </p>
-                    <div class="absolute -bottom-5 -left-5 text-4xl opacity-20 group-hover:opacity-40 transition-all duration-500">
-                        🔥
-                    </div>
+                <div class="bg-gray-800 p-8 rounded-xl">
+                    <div class="w-16 h-16 rounded-full bg-purple-500 text-white flex items-center justify-center text-2xl font-bold mb-6">3</div>
+                    <h3 class="text-2xl font-bold mb-4">Move out together</h3>
+                    <p class="text-gray-300">Everyone's synced. No waiting, no "5 more minutes", just go.</p>
+                    <div class="mt-6 text-4xl">🚶‍♂️🚶‍♀️</div>
                 </div>
             </div>
         </div>
     </section>
-    
-    <!-- 📲 FEATURES SECTION -->
-    <section class="py-20 bg-black relative overflow-hidden">
-        <div class="noise-bg absolute inset-0 opacity-10"></div>
-        <div class="container mx-auto px-6 relative">
-            <h2 class="text-4xl md:text-5xl font-title mb-20 text-center glitch-effect" data-text="Juste l'essentiel">
-                Juste l'essentiel
-            </h2>
+
+    <!-- Features -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <div class="absolute -top-20 -right-20 text-9xl opacity-10">✨</div>
+        <div class="absolute bottom-10 left-10 text-8xl opacity-10">🔥</div>
+        
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-4">Just the essentials</h2>
+            <p class="text-center text-gray-400 max-w-2xl mx-auto mb-16">We stripped away everything you don't need so you can focus on what matters</p>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Feature 1 -->
-                <div class="feature-sticker p-6 rounded-2xl hover:rotate-0">
-                    <div class="flex items-start">
-                        <div class="w-12 h-12 rounded-full bg-green-900 flex items-center justify-center text-green-400 mr-4">
-                            <i class="fas fa-bell text-xl"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold mb-2">Notification instantanée</h3>
-                            <p class="text-gray-400">Dès qu'un pote appuie, tout le monde est alerté en temps réel.</p>
-                        </div>
-                    </div>
+                <div class="feature-card bg-gray-900 p-8 rounded-xl border border-gray-800 transition duration-300">
+                    <div class="w-12 h-12 rounded-full bg-green-400 text-black flex items-center justify-center text-xl mb-6">⚡</div>
+                    <h3 class="text-xl font-bold mb-3">Instant notification</h3>
+                    <p class="text-gray-300">One tap and everyone knows you're ready to roll.</p>
                 </div>
                 
                 <!-- Feature 2 -->
-                <div class="feature-sticker p-6 rounded-2xl hover:rotate-0">
-                    <div class="flex items-start">
-                        <div class="w-12 h-12 rounded-full bg-blue-900 flex items-center justify-center text-blue-400 mr-4">
-                            <i class="fas fa-eye text-xl"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold mb-2">Statut de préparation</h3>
-                            <p class="text-gray-400">Vois en un clin d'œil qui est prêt et qui traîne encore.</p>
-                        </div>
-                    </div>
+                <div class="feature-card bg-gray-900 p-8 rounded-xl border border-gray-800 transition duration-300">
+                    <div class="w-12 h-12 rounded-full bg-pink-500 text-white flex items-center justify-center text-xl mb-6">👀</div>
+                    <h3 class="text-xl font-bold mb-3">See who's ready</h3>
+                    <p class="text-gray-300">No more guessing who's actually coming.</p>
                 </div>
                 
                 <!-- Feature 3 -->
-                <div class="feature-sticker p-6 rounded-2xl hover:rotate-0 coming-soon">
-                    <div class="flex items-start">
-                        <div class="w-12 h-12 rounded-full bg-purple-900 flex items-center justify-center text-purple-400 mr-4">
-                            <i class="fas fa-map-marker-alt text-xl"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold mb-2">Point de rendez-vous</h3>
-                            <p class="text-gray-400">Définis un lieu de rencontre visible par tout le groupe.</p>
-                        </div>
-                    </div>
+                <div class="feature-card bg-gray-900 p-8 rounded-xl border border-gray-800 transition duration-300">
+                    <div class="w-12 h-12 rounded-full bg-purple-500 text-white flex items-center justify-center text-xl mb-6">📍</div>
+                    <h3 class="text-xl font-bold mb-3">Meetup location</h3>
+                    <p class="text-gray-300">Set it once and forget it. (Coming soon)</p>
                 </div>
                 
                 <!-- Feature 4 -->
-                <div class="feature-sticker p-6 rounded-2xl hover:rotate-0 coming-soon">
-                    <div class="flex items-start">
-                        <div class="w-12 h-12 rounded-full bg-yellow-900 flex items-center justify-center text-yellow-400 mr-4">
-                            <i class="fas fa-clock text-xl"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold mb-2">Heure idéale</h3>
-                            <p class="text-gray-400">On calcule pour que tout le monde arrive en même temps.</p>
-                        </div>
-                    </div>
+                <div class="feature-card bg-gray-900 p-8 rounded-xl border border-gray-800 transition duration-300">
+                    <div class="w-12 h-12 rounded-full bg-blue-400 text-black flex items-center justify-center text-xl mb-6">⏱️</div>
+                    <h3 class="text-xl font-bold mb-3">Ideal departure time</h3>
+                    <p class="text-gray-300">Because "soon" isn't a real time. (Coming soon)</p>
                 </div>
                 
                 <!-- Feature 5 -->
-                <div class="feature-sticker p-6 rounded-2xl hover:rotate-0">
-                    <div class="flex items-start">
-                        <div class="w-12 h-12 rounded-full bg-red-900 flex items-center justify-center text-red-400 mr-4">
-                            <i class="fas fa-ban text-xl"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold mb-2">Pas de bullshit</h3>
-                            <p class="text-gray-400">Pas de chat. Pas de pub. Juste ce dont tu as besoin.</p>
-                        </div>
-                    </div>
+                <div class="feature-card bg-gray-900 p-8 rounded-xl border border-gray-800 transition duration-300">
+                    <div class="w-12 h-12 rounded-full bg-yellow-400 text-black flex items-center justify-center text-xl mb-6">🚫</div>
+                    <h3 class="text-xl font-bold mb-3">No ads, no fluff</h3>
+                    <p class="text-gray-300">We hate clutter as much as you do.</p>
+                </div>
+                
+                <!-- Feature 6 -->
+                <div class="feature-card bg-gray-900 p-8 rounded-xl border border-gray-800 transition duration-300">
+                    <div class="w-12 h-12 rounded-full bg-red-400 text-black flex items-center justify-center text-xl mb-6">💯</div>
+                    <h3 class="text-xl font-bold mb-3">100% free</h3>
+                    <p class="text-gray-300">No hidden fees, no premium version.</p>
                 </div>
             </div>
         </div>
     </section>
-    
-    <!-- 💬 TESTIMONIALS SECTION -->
-    <section class="py-20 bg-gradient-to-b from-gray-900 to-black relative overflow-hidden">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl md:text-5xl font-title mb-20 text-center glitch-effect" data-text="Ce qu'ils disent">
-                Ce qu'ils disent
-            </h2>
+
+    <!-- Testimonials -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-16">What people are saying</h2>
             
-            <div class="flex flex-col lg:flex-row items-center justify-center gap-12">
-                <!-- Phone Mockup -->
-                <div class="phone-mockup w-64 md:w-80">
-                    <div class="phone-screen aspect-[9/19.5] p-4">
-                        <div class="h-full overflow-y-auto">
-                            <!-- Message 1 -->
-                            <div class="message-bubble">
-                                <p>"On appuie, on sort. C'est tout. Génial."</p>
-                                <div class="flex justify-between items-center mt-2 text-xs opacity-70">
-                                    <span>Maxime</span>
-                                    <span>15:24</span>
-                                </div>
-                            </div>
-                            
-                            <!-- Message 2 -->
-                            <div class="message-bubble ml-auto bg-gradient-to-r from-purple-500 to-pink-500 text-white">
-                                <p>"Plus besoin de spammer le groupe. Un bouton, et boum."</p>
-                                <div class="flex justify-between items-center mt-2 text-xs opacity-70">
-                                    <span>Sarah</span>
-                                    <span>15:25</span>
-                                </div>
-                            </div>
-                            
-                            <!-- Message 3 -->
-                            <div class="message-bubble">
-                                <p>"On est tous arrivés en même temps. Incroyable."</p>
-                                <div class="flex justify-between items-center mt-2 text-xs opacity-70">
-                                    <span>Thomas</span>
-                                    <span>15:26</span>
-                                </div>
-                            </div>
+            <div class="max-w-md mx-auto">
+                <div class="phone-mockup mx-auto">
+                    <div class="phone-screen p-6 flex flex-col">
+                        <!-- Chat 1 -->
+                        <div class="chat-bubble left">
+                            <p>Yo, who's actually coming tonight?</p>
+                            <p class="text-xs text-gray-400 mt-1">Alex - 8:14 PM</p>
+                        </div>
+                        
+                        <!-- Chat 2 -->
+                        <div class="chat-bubble right">
+                            <p>I'm ready when you are</p>
+                            <p class="text-xs text-gray-600 mt-1">You - 8:15 PM</p>
+                        </div>
+                        
+                        <!-- Chat 3 -->
+                        <div class="chat-bubble left">
+                            <p>We all arrived at the same time. Insane.</p>
+                            <p class="text-xs text-gray-400 mt-1">Sam - 9:30 PM</p>
+                        </div>
+                        
+                        <!-- Chat 4 -->
+                        <div class="chat-bubble left">
+                            <p>No more spam, just tap and go. Love it</p>
+                            <p class="text-xs text-gray-400 mt-1">Jordan - Yesterday</p>
+                        </div>
+                        
+                        <!-- Chat 5 -->
+                        <div class="chat-bubble right">
+                            <p>Best app for indecisive friend groups</p>
+                            <p class="text-xs text-gray-600 mt-1">You - Yesterday</p>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Floating emojis -->
-                <div class="hidden lg:flex flex-col gap-8">
-                    <div class="sticker w-20 h-20 text-3xl floating">
-                        🎉
-                    </div>
-                    <div class="sticker w-16 h-16 text-2xl floating floating-delay-1">
-                        📡
-                    </div>
-                    <div class="sticker w-24 h-24 text-4xl floating floating-delay-2">
-                        🤯
-                    </div>
-                </div>
             </div>
         </div>
     </section>
-    
-    <!-- ❓ FAQ SECTION -->
-    <section class="py-20 bg-black relative overflow-hidden">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl md:text-5xl font-title mb-20 text-center glitch-effect" data-text="Le coin des sceptiques">
-                Le coin des sceptiques
-            </h2>
+
+    <!-- FAQ -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-4">For the skeptics</h2>
+            <p class="text-center text-gray-400 mb-16">(We know you have questions)</p>
             
-            <div class="max-w-3xl mx-auto">
-                <!-- FAQ Item 1 -->
-                <div class="mb-8 border-b border-gray-800 pb-6">
-                    <div class="flex justify-between items-start cursor-pointer group" onclick="toggleAnswer(this)">
-                        <h3 class="text-xl md:text-2xl font-bold group-hover:text-green-400 transition-colors duration-300">C'est une app de chat ?</h3>
-                        <span class="text-xl ml-4 group-hover:text-pink-400 transition-colors duration-300">+</span>
-                    </div>
-                    <div class="faq-answer mt-4 text-gray-400 overflow-hidden max-h-0">
-                        <p>Non. Juste un bouton. On a dit qu'on faisait pas dans le compliqué.</p>
-                    </div>
-                </div>
-                
-                <!-- FAQ Item 2 -->
-                <div class="mb-8 border-b border-gray-800 pb-6">
-                    <div class="flex justify-between items-start cursor-pointer group" onclick="toggleAnswer(this)">
-                        <h3 class="text-xl md:text-2xl font-bold group-hover:text-green-400 transition-colors duration-300">Ça sert à quoi ?</h3>
-                        <span class="text-xl ml-4 group-hover:text-pink-400 transition-colors duration-300">+</span>
-                    </div>
-                    <div class="faq-answer mt-4 text-gray-400 overflow-hidden max-h-0">
-                        <p>À sortir plus vite. Ensemble. Sans se prendre la tête.</p>
+            <div class="space-y-4">
+                <!-- FAQ 1 -->
+                <div class="faq-item bg-gray-900 rounded-xl overflow-hidden">
+                    <button class="w-full text-left p-6 flex justify-between items-center" onclick="toggleFAQ(this)">
+                        <h3 class="text-lg font-bold">Is this a chat app?</h3>
+                        <span class="text-xl">+</span>
+                    </button>
+                    <div class="faq-answer px-6">
+                        <p class="pb-6 text-gray-300">Nope! That's the whole point. MITUP removes all the back-and-forth and gives you one simple button to coordinate with your friends.</p>
                     </div>
                 </div>
                 
-                <!-- FAQ Item 3 -->
-                <div class="mb-8 border-b border-gray-800 pb-6">
-                    <div class="flex justify-between items-start cursor-pointer group" onclick="toggleAnswer(this)">
-                        <h3 class="text-xl md:text-2xl font-bold group-hover:text-green-400 transition-colors duration-300">C'est gratuit ?</h3>
-                        <span class="text-xl ml-4 group-hover:text-pink-400 transition-colors duration-300">+</span>
-                    </div>
-                    <div class="faq-answer mt-4 text-gray-400 overflow-hidden max-h-0">
-                        <p>Évidemment. On est pas des sauvages.</p>
-                    </div>
-                </div>
-                
-                <!-- FAQ Item 4 -->
-                <div class="mb-8 border-b border-gray-800 pb-6">
-                    <div class="flex justify-between items-start cursor-pointer group" onclick="toggleAnswer(this)">
-                        <h3 class="text-xl md:text-2xl font-bold group-hover:text-green-400 transition-colors duration-300">C'est pour qui ?</h3>
-                        <span class="text-xl ml-4 group-hover:text-pink-400 transition-colors duration-300">+</span>
-                    </div>
-                    <div class="faq-answer mt-4 text-gray-400 overflow-hidden max-h-0">
-                        <p>Ceux qui veulent bouger sans se prendre la tête. Les autres peuvent rester chez eux.</p>
+                <!-- FAQ 2 -->
+                <div class="faq-item bg-gray-900 rounded-xl overflow-hidden">
+                    <button class="w-full text-left p-6 flex justify-between items-center" onclick="toggleFAQ(this)">
+                        <h3 class="text-lg font-bold">What's the point?</h3>
+                        <span class="text-xl">+</span>
+                    </button>
+                    <div class="faq-answer px-6">
+                        <p class="pb-6 text-gray-300">How many times have you waited for friends who said "5 more minutes" for an hour? MITUP syncs everyone so you can actually leave on time.</p>
                     </div>
                 </div>
                 
-                <!-- FAQ Item 5 -->
-                <div class="mb-8">
-                    <div class="flex justify-between items-start cursor-pointer group" onclick="toggleAnswer(this)">
-                        <h3 class="text-xl md:text-2xl font-bold group-hover:text-green-400 transition-colors duration-300">Et si j'aime pas ?</h3>
-                        <span class="text-xl ml-4 group-hover:text-pink-400 transition-colors duration-300">+</span>
+                <!-- FAQ 3 -->
+                <div class="faq-item bg-gray-900 rounded-xl overflow-hidden">
+                    <button class="w-full text-left p-6 flex justify-between items-center" onclick="toggleFAQ(this)">
+                        <h3 class="text-lg font-bold">Is it free?</h3>
+                        <span class="text-xl">+</span>
+                    </button>
+                    <div class="faq-answer px-6">
+                        <p class="pb-6 text-gray-300">Yes! And we plan to keep it that way. No ads, no premium version, no nonsense.</p>
                     </div>
-                    <div class="faq-answer mt-4 text-gray-400 overflow-hidden max-h-0">
-                        <p>Alors reste chez toi 🤷</p>
+                </div>
+                
+                <!-- FAQ 4 -->
+                <div class="faq-item bg-gray-900 rounded-xl overflow-hidden">
+                    <button class="w-full text-left p-6 flex justify-between items-center" onclick="toggleFAQ(this)">
+                        <h3 class="text-lg font-bold">Who is it for?</h3>
+                        <span class="text-xl">+</span>
+                    </button>
+                    <div class="faq-answer px-6">
+                        <p class="pb-6 text-gray-300">Anyone who's ever waited for friends to get ready. Students, young professionals, friend groups - if you go out together, MITUP is for you.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 5 -->
+                <div class="faq-item bg-gray-900 rounded-xl overflow-hidden">
+                    <button class="w-full text-left p-6 flex justify-between items-center" onclick="toggleFAQ(this)">
+                        <h3 class="text-lg font-bold">What if I don't like it?</h3>
+                        <span class="text-xl">+</span>
+                    </button>
+                    <div class="faq-answer px-6">
+                        <p class="pb-6 text-gray-300">Delete it! No hard feelings. But we think you'll love how simple it makes coordinating with your crew.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
-<!-- 🚀 FOOTER -->
-<footer class="py-16 bg-gradient-to-b from-black to-gray-900 relative overflow-hidden noise-bg">
-  <div class="container mx-auto px-6 text-center">
-    <h2 class="text-3xl md:text-4xl font-title mb-6 glitch-effect" data-text="Prêt à bouger ?">
-      Prêt à bouger ?
-    </h2>
 
-    <p class="text-xl mb-8 max-w-2xl mx-auto">
-      MITUP te dit qui est chaud. En un clic. Zéro prise de tête.
-    </p>
+    <!-- Beta Form -->
+    <section id="beta-form" class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-900 to-black">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl sm:text-4xl font-bold mb-6">Ready to move?</h2>
+            <p class="text-xl text-gray-300 mb-10">MITUP shows who's hot. One tap. That's it.</p>
+            
+            <div class="max-w-md mx-auto">
+                <form class="space-y-6">
+                    <div>
+                        <input type="text" placeholder="Your name" class="w-full px-6 py-4 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400">
+                    </div>
+                    <div>
+                        <input type="email" placeholder="Your email" class="w-full px-6 py-4 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400">
+                    </div>
+                    <div>
+                        <button type="submit" class="w-full px-8 py-4 bg-gradient-to-r from-green-400 to-blue-500 text-black font-bold rounded-full hover:opacity-90 transition">
+                            Join the beta
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
 
-    <div class="flex justify-center gap-6 mb-10">
-      <a href="#beta" class="bg-white text-black px-6 py-3 rounded-full font-bold hover:bg-gray-200 transition-all duration-300 flex items-center">
-        <i class="fas fa-bolt mr-2 text-xl"></i>
-        Rejoins la beta
-      </a>
-    </div>
+    <!-- Footer -->
+    <footer class="py-12 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-2xl font-bold">MITUP</h3>
+                    <p class="text-gray-400">One tap. They're all ready.</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition" onmouseover="randomEmoji(this)">Twitter</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition" onmouseover="randomEmoji(this)">Instagram</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition" onmouseover="randomEmoji(this)">TikTok</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition" onmouseover="randomEmoji(this)">Wanna read the T&Cs? OK boomer.</a>
+                </div>
+            </div>
+            
+            <div class="mt-12 pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
+                <p>© 2023 MITUP. Made with ❤️ for people who actually want to go out.</p>
+            </div>
+        </div>
+    </footer>
 
-    <div class="text-gray-500 text-sm">
-      <a href="#" class="hover:text-white transition-colors duration-300">CGU ? C'est par là →</a>
-    </div>
-
-    <div class="sticker w-16 h-16 text-2xl absolute bottom-10 right-10 cursor-pointer hover:rotate-45" id="random-sticker">
-      🚀
-    </div>
-  </div>
-</footer>
-    
     <script>
-        // Hero section button animation
-        document.querySelector('.vibrate-on-hover').addEventListener('mouseenter', function() {
-            this.classList.add('vibrate');
-            // Play sound effect
-            const audio = new Audio('data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YU...');
-            audio.volume = 0.2;
-            audio.play().catch(e => console.log(e));
-        });
-        
-        document.querySelector('.vibrate-on-hover').addEventListener('mouseleave', function() {
-            this.classList.remove('vibrate');
-        });
-        
-        // Main button interaction
-        const mainButton = document.getElementById('main-button');
-        const notification = document.getElementById('notification');
-        
-        mainButton.addEventListener('click', function() {
-            this.classList.add('animate-ping');
-            setTimeout(() => {
-                this.classList.remove('animate-ping');
-                notification.classList.remove('hidden');
-                
-                // Simulate notification spreading
-                setTimeout(() => {
-                    notification.classList.add('opacity-0', 'scale-150');
-                    setTimeout(() => {
-                        notification.classList.add('hidden');
-                        notification.classList.remove('opacity-0', 'scale-150');
-                    }, 500);
-                }, 2000);
-            }, 500);
-        });
-        
-        // Random sticker in footer
-        const stickers = ['🚀', '🎯', '🔥', '⚡', '🎉', '🤯', '👽', '🛸'];
-        const randomSticker = document.getElementById('random-sticker');
-        
-        randomSticker.addEventListener('mouseenter', function() {
-            const randomIndex = Math.floor(Math.random() * stickers.length);
-            this.textContent = stickers[randomIndex];
-        });
-        
-        // Scroll animation for steps
-        const stepCards = document.querySelectorAll('.step-card');
-        
-        function checkVisibility() {
-            stepCards.forEach((card, index) => {
-                const rect = card.getBoundingClientRect();
-                const isVisible = (rect.top <= window.innerHeight * 0.8);
-                
-                if (isVisible) {
-                    setTimeout(() => {
-                        card.classList.add('visible');
-                    }, index * 200);
-                }
-            });
+        // Toggle FAQ items
+        function toggleFAQ(button) {
+            const faqItem = button.parentElement;
+            faqItem.classList.toggle('active');
+            
+            const icon = button.querySelector('span');
+            if (faqItem.classList.contains('active')) {
+                icon.textContent = '-';
+            } else {
+                icon.textContent = '+';
+            }
         }
         
-        window.addEventListener('scroll', checkVisibility);
-        window.addEventListener('load', checkVisibility);
-        
-        // FAQ toggle
-        function toggleAnswer(question) {
-            const answer = question.nextElementSibling;
-            const plusSign = question.querySelector('span');
+        // Random emoji on hover for footer links
+        const emojis = ['😂', '🤪', '😎', '🤩', '👻', '🍻', '🎉', '🚀', '🔥', '💯'];
+        function randomEmoji(link) {
+            const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+            const originalText = link.textContent;
             
-            if (answer.style.maxHeight) {
-                answer.style.maxHeight = null;
-                plusSign.textContent = '+';
-            } else {
-                answer.style.maxHeight = answer.scrollHeight + 'px';
-                plusSign.textContent = '-';
-                
-                // Random answer variations for fun
-                const answers = answer.querySelectorAll('p');
-                answers.forEach(p => {
-                    const variations = [
-                        p.textContent,
-                        p.textContent + " (mais vraiment)",
-                        p.textContent.toLowerCase(),
-                        p.textContent.toUpperCase(),
-                        p.textContent.split('').reverse().join('')
-                    ];
-                    
-                    p.addEventListener('click', function() {
-                        const randomIndex = Math.floor(Math.random() * variations.length);
-                        this.textContent = variations[randomIndex];
-                    });
+            link.textContent = originalText + ' ' + randomEmoji;
+            
+            link.addEventListener('mouseout', function() {
+                link.textContent = originalText;
+            }, { once: true });
+        }
+        
+        // Disable animations on mobile for better performance
+        function checkScreenSize() {
+            if (window.innerWidth < 768) {
+                document.querySelectorAll('.emoji-float, .pulse').forEach(el => {
+                    el.style.animation = 'none';
                 });
             }
         }
+        
+        window.addEventListener('resize', checkScreenSize);
+        checkScreenSize();
     </script>
 </body>
 </html>
